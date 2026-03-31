@@ -1,17 +1,23 @@
-Laravel Nothers
+# Laravel Blog Application
 
-This project is a web application built using Laravel framework.
+A minimalist blog system built with Laravel, Blade templates, and Tailwind CSS.
 
-Description
+## Features
 
-The application is a base Laravel project that can be extended into a full-featured system such as a blog, CRM, or admin panel. It includes backend setup, database configuration, and frontend build tools using Vite.
+- User authentication
+- Create, read, update and delete blog posts
+- Minimalist dark theme UI
+- Responsive design with Tailwind CSS
+- PostgreSQL/MySQL/SQLite support
 
-Requirements
-PHP 8.2 or higher
-Composer
-Node.js and npm
-SQLite or MySQL
-Installation
+## Requirements
+
+- PHP 8.2 or higher
+- Composer
+- Node.js and npm
+- SQLite or MySQL
+
+## Installation
 
 Clone the repository:
 
