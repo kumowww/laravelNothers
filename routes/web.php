@@ -31,8 +31,6 @@ Route::middleware(['locale.validation'])->group(function () {
         ->name('posts.create');
 });
 
-
-
 Route::get('/run-migrations', function () {
     try {
         Artisan::call('migrate', ['--force' => true]);
