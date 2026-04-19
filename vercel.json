@@ -1,21 +1,41 @@
 {
   "version": 2,
-  "installCommand": "composer install",
-  "buildCommand": "php artisan route:clear && php artisan config:clear && php artisan view:clear",
-  "builds": [
-    {
-      "src": "api/index.php",
-      "use": "vercel-php"
+  "framework": null,
+  "installCommand": "composer install --no-dev --optimize-autoloader",
+  "buildCommand": "php artisan config:clear && php artisan route:clear && php artisan view:clear && php artisan cache:clear",
+  "functions": {
+    "api/index.php": {
+      "runtime": "vercel-php@0.7.3"
     }
-  ],
+  },
   "routes": [
     {
-      "src": "/(css|js|images|fonts)/(.*)",
-      "dest": "/public/$1/$2"
+      "src": "/build/(.*)",
+      "dest": "/public/build/$1"
+    },
+    {
+      "src": "/css/(.*)",
+      "dest": "/public/css/$1"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/public/js/$1"
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/public/images/$1"
+    },
+    {
+      "src": "/fonts/(.*)",
+      "dest": "/public/fonts/$1"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/public/favicon.ico"
     },
     {
       "src": "/(.*)",
-      "dest": "api/index.php"
+      "dest": "/api/index.php"
     }
   ]
 }
