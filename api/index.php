@@ -1,26 +1,29 @@
 <?php
 
-require __DIR__ . '/../vendor/autoload.php';
+putenv('VIEW_COMPILED_PATH=/tmp/framework/views');
 
-$app = require_once __DIR__ . '/../bootstrap/app.php';
-
-$app->useStoragePath('/tmp');
-
-$storagePaths = [
+$paths = [
     '/tmp/framework/views',
     '/tmp/framework/cache/data',
     '/tmp/framework/sessions',
 ];
 
-foreach ($storagePaths as $path) {
-    if (!is_dir($path)) {
-        mkdir($path, 0755, true);
+foreach ($paths as $p) {
+    if (!is_dir($p)) {
+        @mkdir($p, 0755, true);
     }
 }
+
+require __DIR__ . '/../vendor/autoload.php';
 
 if (!file_exists('/tmp/database.sqlite')) {
     touch('/tmp/database.sqlite');
 }
+putenv('DB_DATABASE=/tmp/database.sqlite');
+
+$app = require_once __DIR__ . '/../bootstrap/app.php';
+
+$app->useStoragePath('/tmp');
 
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
