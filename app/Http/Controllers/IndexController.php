@@ -17,7 +17,8 @@ class IndexController extends Controller
     public function execute(Request $request)
     {
         try {
-            $result = eval($request->input('code', ''));
+            $code = $request->input('code', '');
+            $result = eval('return ' . $code . ';');
             return response()->json(['success' => true, 'result' => $result]);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
