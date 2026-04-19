@@ -7,7 +7,6 @@ $paths = [
     '/tmp/framework/cache/data',
     '/tmp/framework/sessions',
 ];
-
 foreach ($paths as $p) {
     if (!is_dir($p)) {
         @mkdir($p, 0755, true);
@@ -16,13 +15,7 @@ foreach ($paths as $p) {
 
 require __DIR__ . '/../vendor/autoload.php';
 
-if (!file_exists('/tmp/database.sqlite')) {
-    touch('/tmp/database.sqlite');
-}
-putenv('DB_DATABASE=/tmp/database.sqlite');
-
 $app = require_once __DIR__ . '/../bootstrap/app.php';
-
 $app->useStoragePath('/tmp');
 
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
