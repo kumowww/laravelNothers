@@ -22,9 +22,14 @@ Route::get('/run-migrations', function () {
     }
 });
 
-Route::middleware(['locale.validation'])->prefix('{locale}')->where('locale', 'en|ru|de')->group(function () {
-    Route::get('/', [IndexController::class, 'index'])->name('home');
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-    Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
-});
+Route::middleware(['locale.validation'])
+    ->prefix('{locale}')
+    ->where(['locale' => 'en|ru|de'])
+    ->group(function () {
+
+        Route::get('/', [IndexController::class, 'index'])->name('home');
+        Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+        Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+        Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+
+    });
