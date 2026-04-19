@@ -1,9 +1,6 @@
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
-$app = require_once __DIR__ . '/../bootstrap/app.php';
-
-$app->useStoragePath('/tmp');
 
 $paths = [
     '/tmp/framework/views',
@@ -17,11 +14,19 @@ foreach ($paths as $path) {
     }
 }
 
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+$app = require_once __DIR__ . '/../bootstrap/app.php';
 
-$app->make('config')->set('view.compiled', '/tmp/framework/views');
-$app->make('config')->set('cache.default', 'array');
-$app->make('config')->set('session.driver', 'cookie');
+$app->useStoragePath('/tmp');
+
+$app->make(\Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+
+config([
+    'view.compiled' => '/tmp/framework/views',
+    'cache.default' => 'array',
+    'session.driver' => 'cookie',
+]);
+
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
