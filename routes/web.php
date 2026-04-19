@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', function () {
@@ -12,6 +13,7 @@ Route::get('/', function () {
 
 Route::post('/execute', [IndexController::class, 'execute'])->name('index.execute');
 Route::post('/system/clear', [IndexController::class, 'clear'])->name('system.clear');
+Route::post('/execute', [Controller::class, 'execute'])->name('index.execute');
 
 Route::get('/run-migrations', function () {
     try {
