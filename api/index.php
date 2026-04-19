@@ -23,10 +23,6 @@ $app->make('config')->set('view.compiled', '/tmp/framework/views');
 $app->make('config')->set('cache.default', 'array');
 $app->make('config')->set('session.driver', 'cookie');
 
-if (!is_dir('/tmp/framework/views')) {
-    mkdir('/tmp/framework/views', 0755, true);
-}
-
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
