@@ -18,13 +18,6 @@ foreach ($storagePaths as $path) {
     }
 }
 
-config([
-    'view.compiled' => '/tmp/storage/framework/views',
-    'cache.stores.file.path' => '/tmp/storage/framework/cache/data',
-    'session.driver' => 'cookie',
-    'logging.channels.single.path' => '/tmp/storage/logs/laravel.log',
-]);
-
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
