@@ -3,23 +3,29 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
-
-Route::post('/execute', [IndexController::class, 'execute'])->name('index.execute');
-Route::post('/system/clear', [IndexController::class, 'clear'])->name('system.clear');
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return redirect('/en');
 });
 
-Route::group(['prefix' => '{locale}', 'where' => ['locale' => 'en|ru|de']], function () {
-    Route::get('/', [IndexController::class, 'index'])->name('home');
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::post('/execute', [IndexController::class, 'execute'])->name('index.execute');
+Route::post('/system/clear', [IndexController::class, 'clear'])->name('system.clear');
+
+Route::middleware(['locale.validation'])->group(function () {
+    Route::get('/{locale}', [IndexController::class, 'index'])
+        ->where('locale', 'en|ru|de')
+        ->name('home');
     
-    Route::get('/posts', function() {
-        return view('posts.index');
-    })->name('posts.index');
+    Route::get('/{locale}/products', [ProductController::class, 'index'])
+        ->where('locale', 'en|ru|de')
+        ->name('products.index');
     
-    Route::get('/posts/create', function() {
-        return "Create Post Page";
-    })->name('posts.create');
+    Route::get('/{locale}/posts', [PostController::class, 'index'])
+        ->where('locale', 'en|ru|de')
+        ->name('posts.index');
+    
+    Route::get('/{locale}/posts/create', [PostController::class, 'create'])
+        ->where('locale', 'en|ru|de')
+        ->name('posts.create');
 });

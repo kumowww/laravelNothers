@@ -11,7 +11,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // 0_0
+    $middleware->alias([
+        'locale.validation' => \App\Http\Middleware\LocaleValidation::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         // 0_0

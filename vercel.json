@@ -1,24 +1,29 @@
 {
     "version": 2,
-    "public": true,
+    "framework": "laravel",
     "builds": [
         {
             "src": "public/index.php",
-            "use": "@vercel/php"
+            "use": "@vercel/php@0.6.0"
         }
     ],
     "routes": [
         {
-            "src": "/build/(.*)",
+            "src": "^/build/(.*)",
             "dest": "/public/build/$1"
         },
         {
-            "src": "/(css|js|images|favicon.ico)/(.*)",
+            "src": "^/(css|js|images|favicon.ico)/(.*)",
             "dest": "/public/$1/$2"
         },
         {
             "src": "/(.*)",
             "dest": "/public/index.php"
         }
-    ]
+    ],
+    "env": {
+        "APP_ENV": "production",
+        "APP_DEBUG": "false",
+        "APP_LOG": "single"
+    }
 }

@@ -1,8 +1,14 @@
 @extends('layouts.app')
 
+@section('title', 'Products')
+
 @section('content')
-<div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
-    <h1 class="text-2xl font-bold mb-4">Products Page</h1>
-    <p class="text-gray-400">Welcome to the laravelblogapplication products list.</p>
+<div>
+    <h1>Products</h1>
+    <p style="font-size: 16px; color: #666;">Language: <strong>{{ strtoupper($locale) }}</strong></p>
+    
+    <div style="margin-top: 30px;">
+        <p style="color: #999; font-size: 16px;">No products available yet.</p>
+    </div>
 </div>
 @endsection

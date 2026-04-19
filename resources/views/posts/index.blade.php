@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
+@section('title', 'Posts')
+
 @section('content')
-    <h1>Blog Posts</h1>
-    <div class="grid">
-        <div class="card">
-            <h2>Post Title</h2>
-            <p>Content of the post will be here later.</p>
-            <a href="#" class="nav-link" style="font-size: 0.8em;">Read More</a>
-        </div>
+<div>
+    <h1>Posts</h1>
+    <a href="/{{ $locale }}/posts/create" class="btn">Create New Post</a>
+    
+    <div style="margin-top: 30px;">
+        <p style="color: #999; font-size: 16px;">No posts yet. Create your first post! 0_0</p>
     </div>
+</div>
 @endsection

@@ -1,119 +1,281 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ $locale ?? 'en' }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>laravelblogapplication</title>
+    <title>@yield('title', 'Blog')</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
-        :root {
-            --bg-color: #ffffff;
-            --text-color: #000000;
-            --card-border: #1a1a1a;
-            --btn-bg: #808080;
-            --btn-text: #ffffff;
-            --input-bg: #ffffff;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        [data-theme="dark"] {
-            --bg-color: #555555;
-            --text-color: #ffffff;
-            --card-border: #ffffff;
-            --btn-bg: #808080;
-            --btn-text: #ffffff;
-            --input-bg: #555555;
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #fff;
+            color: #333;
+            transition: background 0.3s, color 0.3s;
         }
-        body { 
-            background-color: var(--bg-color); 
-            color: var(--text-color); 
-            font-family: sans-serif; 
-            margin: 0; 
-            padding: 20px; 
+
+        body[data-theme="dark"] {
+            background: #1a1a1a;
+            color: #f0f0f0;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        body[data-theme="dark"] header {
+            background: rgba(30, 30, 30, 0.95);
+            border-bottom-color: #333;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav a:hover {
+            color: #007bff;
+            border-bottom-color: #007bff;
+        }
+
+        .top-right-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .locale-switcher {
+            display: flex;
+            gap: 8px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            padding: 4px 8px;
+        }
+
+        body[data-theme="dark"] .locale-switcher {
+            background: #333;
+        }
+
+        .locale-switcher a {
+            padding: 6px 12px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #666;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        body[data-theme="dark"] .locale-switcher a {
+            color: #aaa;
+        }
+
+        .locale-switcher a.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .locale-switcher a:hover:not(.active) {
+            background: rgba(0, 123, 255, 0.1);
+        }
+
+        .theme-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
             transition: background 0.3s;
         }
-        .container { max-width: 1000px; margin: 0 auto; position: relative; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
-        .card { border: 1px solid var(--card-border); padding: 15px; border-radius: 5px; }
-        
-        nav { margin-bottom: 20px; display: flex; gap: 10px; align-items: center; }
-        
-        .nav-link {
-            background: var(--btn-bg);
-            color: var(--btn-text);
-            padding: 8px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+
+        .theme-btn:hover {
+            background: #f0f0f0;
         }
 
-        .lang-link {
-            color: var(--text-color);
-            text-decoration: none;
-            margin-left: 10px;
-            font-size: 0.9em;
-            border: 1px solid var(--card-border);
-            padding: 2px 5px;
+        body[data-theme="dark"] .theme-btn:hover {
+            background: #333;
         }
 
-        .theme-toggle {
-            position: absolute;
-            top: 0;
-            right: 0;
-            cursor: pointer;
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .alert {
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .alert ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
             border: none;
-            background: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background 0.3s;
         }
 
-        #icon-sun, #icon-moon { width: 30px; height: 30px; }
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        main {
+            margin-bottom: 60px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 60px;
+        }
+
+        body[data-theme="dark"] footer {
+            border-top-color: #333;
+        }
     </style>
 </head>
-<body data-theme="dark">
-    <div class="container">
-        <button class="theme-toggle" onclick="toggleTheme()">
-            <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" style="display: block;">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" style="display: none;">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-        </button>
-
-        <nav>
-            <a href="{{ route('home', ['locale' => app()->getLocale()]) }}" class="nav-link">Home</a>
-            <a href="{{ route('posts.index', ['locale' => app()->getLocale()]) }}" class="nav-link">Posts</a>
-            <div style="margin-left: auto;">
-                <a href="/en" class="lang-link">EN</a>
-                <a href="/de" class="lang-link">DE</a>
-                <a href="/ru" class="lang-link">RU</a>
+<body>
+    <header>
+        <div class="header-content">
+            <nav>
+                <a href="/{{ $locale }}">Home</a>
+                <a href="/{{ $locale }}/posts">Posts</a>
+                <a href="/{{ $locale }}/products">Products</a>
+            </nav>
+            
+            <div class="top-right-controls">
+                <div class="locale-switcher">
+                    <a href="/en" class="@if($locale === 'en') active @endif">EN</a>
+                    <a href="/de" class="@if($locale === 'de') active @endif">DE</a>
+                    <a href="/ru" class="@if($locale === 'ru') active @endif">RU</a>
+                </div>
+                <button id="theme-toggle" class="theme-btn" title="Toggle theme">🌙</button>
             </div>
-        </nav>
+        </div>
+    </header>
 
-        <main>
-            @yield('content')
-        </main>
-    </div>
+    @if ($errors->any())
+        <div class="container">
+            <div class="alert alert-danger">
+                <div>
+                    <strong>Ошибка!</strong>
+                    <ul style="margin-top: 10px;">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    @if (session('success'))
+        <div class="container">
+            <div class="alert alert-success">
+                <span>{{ session('success') }}</span>
+            </div>
+        </div>
+    @endif
+
+    <main class="container">
+        @yield('content')
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Laravel Blog. All rights reserved.</p>
+    </footer>
 
     <script>
-        function toggleTheme() {
-            const body = document.body;
-            const sun = document.getElementById('icon-sun');
-            const moon = document.getElementById('icon-moon');
-            
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                sun.style.display = 'none';
-                moon.style.display = 'block';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                sun.style.display = 'block';
-                moon.style.display = 'none';
-            }
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+        updateThemeButton();
+
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            updateThemeButton();
+        });
+
+        function updateThemeButton() {
+            const current = document.documentElement.getAttribute('data-theme');
+            const btn = document.getElementById('theme-toggle');
+            btn.textContent = current === 'light' ? '🌙' : '☀️';
         }
     </script>
 </body>
