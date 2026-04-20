@@ -19,7 +19,12 @@ foreach ($paths as $path) {
     }
 }
 
+$app->singleton('files', function () {
+    return new Illuminate\Filesystem\Filesystem;
+});
+
 $app->register(Illuminate\View\ViewServiceProvider::class);
+$app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
 
 try {
     $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
