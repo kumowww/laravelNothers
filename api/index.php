@@ -27,6 +27,14 @@ $app->singleton('files', function () {
 $app->register(Illuminate\View\ViewServiceProvider::class);
 $app->register(Illuminate\Filesystem\FilesystemServiceProvider::class);
 
+if (empty(env('APP_KEY'))) {
+    $app['config']->set('app.key', 'base64:2ZqU8Xh9LpV3mN7rT5wY1kC4bJ6sF0gH2aD8eK9nM=');
+}
+
+if (empty(env('APP_KEY'))) {
+    $app['config']->set('app.cipher', 'AES-256-CBC');
+}
+
 try {
     $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
     
