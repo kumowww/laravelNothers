@@ -1,6 +1,8 @@
 {
   "version": 2,
-  "buildCommand": "echo 'No build step'",
+  "buildCommand": "",
+  "outputDirectory": "public",
+  "installCommand": "",
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.7.3"
