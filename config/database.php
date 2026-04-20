@@ -8,13 +8,13 @@ return [
 
     'connections' => [
 
-            'sqlite' => [
-        'driver' => 'sqlite',
-        'url' => env('DATABASE_URL'),
-        'database' => env('DB_DATABASE', database_path('database.sqlite')),
-        'prefix' => '',
-        'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
-    ],
+        'sqlite' => [
+            'driver' => 'sqlite',
+            'url' => env('DATABASE_URL'),
+            'database' => env('DB_DATABASE', database_path('database.sqlite')),
+            'prefix' => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        ],
 
         'pgsql' => [
             'driver' => 'pgsql',
@@ -46,7 +46,7 @@ return [
             'host' => env('REDIS_HOST', '127.0.0.1'),
             'username' => env('REDIS_USER'),
             'password' => env('REDIS_PASSWORD'),
-            'port' => env('REDIS_PORT', '6337'),
+            'port' => env('REDIS_PORT', '6379'),
             'database' => env('REDIS_DB', '0'),
         ],
     ],

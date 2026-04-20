@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "buildCommand": "echo 'No build step'",
   "functions": {
     "api/index.php": {
       "runtime": "vercel-php@0.7.3"
