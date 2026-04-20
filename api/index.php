@@ -19,18 +19,20 @@ foreach ($paths as $path) {
     }
 }
 
-$artisan = $app->make(Illuminate\Contracts\Console\Kernel::class);
-$artisan->call('config:cache');
-$artisan->call('route:cache');
-$artisan->call('view:cache');
-$artisan->call('migrate', ['--force' => true]);
-
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-
-$response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
-);
-
-$response->send();
-
-$kernel->terminate($request, $response);
+try {
+    $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+    
+    $response = $kernel->handle(
+        $request = Illuminate\Http\Request::capture()
+    );
+    
+    $response->send();
+    
+    $kernel->terminate($request, $response);
+} catch (\Exception $e) {
+    http_response_code(500);
+    echo 'Error: ' . $e->getMessage() . '<br>';
+    echo 'File: ' . $e->getFile() . '<br>';
+    echo 'Line: ' . $e->getLine() . '<br>';
+    echo 'Trace: <pre>' . $e->getTraceAsString() . '</pre>';
+}
