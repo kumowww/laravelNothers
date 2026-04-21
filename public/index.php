@@ -13,19 +13,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
-$paths = [
-    '/tmp/storage/framework/cache/data',
-    '/tmp/storage/framework/sessions',
-    '/tmp/storage/framework/views',
-    '/tmp/storage/logs',
-    '/tmp/bootstrap/cache'
-];
-
-foreach ($paths as $path) {
-    if (!is_dir($path)) {
-        mkdir($path, 0777, true);
-    }
-}
+$app->useStoragePath('/tmp/storage');
 
 $kernel = $app->make(Kernel::class);
 
