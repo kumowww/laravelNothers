@@ -4,12 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Blog')</title>
-    @if(app()->environment('local'))
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @else
-        <link rel="stylesheet" href="{{ asset('build/assets/app.css') }}">
-        <script type="module" src="{{ asset('build/assets/app.js') }}" defer></script>
-    @endif
+    <link rel="stylesheet" href="{{ asset('build/assets/app-C_w4eb3L.css') }}">
     <style>
         * {
             margin: 0;
@@ -25,5 +20,6 @@
 </head>
 <body>
     @yield('content')
+    <script type="module" src="{{ asset('build/assets/app-DBy8rRQW.js') }}" defer></script>
 </body>
 </html>
