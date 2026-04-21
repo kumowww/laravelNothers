@@ -4,6 +4,10 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
+if (empty(env('APP_KEY'))) {
+    $_ENV['APP_KEY'] = 'base64:iZ9U8Xh9LpV3mN7rT5wY1kC4bJ6sF0gH2aD8eK9nM=';
+}
+
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
