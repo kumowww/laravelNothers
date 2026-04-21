@@ -17,24 +17,26 @@ class IndexController extends Controller
 
     public function execute(Request $request)
     {
+        $locale = $request->route('locale') ?? 'en';
         try {
             $code = $request->input('code', 'return "No code provided";');
             $result = eval($code);
-            return response()->json(['success' => true, 'result' => $result]);
+            return redirect()->route('home', ['locale' => $locale])->with('success', 'Result: ' . $result);
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+            return redirect()->route('home', ['locale' => $locale])->with('error', $e->getMessage());
         }
     }
 
     public function clear(Request $request)
     {
+        $locale = $request->route('locale') ?? 'en';
         try {
             Artisan::call('cache:clear');
             Artisan::call('config:clear');
             Artisan::call('view:clear');
-            return response()->json(['success' => true, 'message' => 'Cache cleared']);
+            return redirect()->route('home', ['locale' => $locale])->with('success', __('messages.cache_cleared'));
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+            return redirect()->route('home', ['locale' => $locale])->with('error', $e->getMessage());
         }
     }
 }

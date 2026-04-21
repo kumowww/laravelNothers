@@ -161,6 +161,7 @@
             cursor: pointer;
             font-weight: 500;
             transition: background 0.3s;
+            text-align: center;
         }
 
         .btn:hover {
@@ -200,15 +201,34 @@
         body[data-theme="dark"] footer {
             border-top-color: #333;
         }
+
+        .creator-link {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .creator-link:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        body[data-theme="dark"] .creator-link {
+            color: #66b0ff;
+        }
+
+        body[data-theme="dark"] .creator-link:hover {
+            color: #99ccff;
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="header-content">
             <nav>
-                <a href="/{{ $locale }}">Home</a>
-                <a href="/{{ $locale }}/posts">Posts</a>
-                <a href="/{{ $locale }}/products">Products</a>
+                <a href="{{ route('home', ['locale' => $locale]) }}">@lang('messages.home')</a>
+                <a href="{{ route('posts.index', ['locale' => $locale]) }}">@lang('messages.posts')</a>
+                <a href="{{ route('products.index', ['locale' => $locale]) }}">@lang('messages.products')</a>
             </nav>
             
             <div class="top-right-controls">
@@ -225,7 +245,7 @@
     @if ($errors->any())
         <div class="container">
             <div class="alert alert-danger">
-                <strong>Error:</strong>
+                <strong>@lang('messages.error'):</strong>
                 <ul style="margin-top: 10px;">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -246,28 +266,41 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Laravel Blog. All rights reserved.</p>
+        <p>&copy; 2026 Laravel Blog. @lang('messages.all_rights_reserved')</p>
+        <p style="margin-top: 10px;">
+            @lang('messages.created_by') <a href="https://github.com/kumowww" target="_blank" class="creator-link">github:kumowww</a>
+        </p>
     </footer>
 
     <script type="module" src="{{ asset('build/assets/app.js') }}" defer></script>
     <script>
-        const theme = localStorage.getItem('theme') || 'light';
-        document.documentElement.setAttribute('data-theme', theme);
-        updateThemeButton();
-
-        document.getElementById('theme-toggle').addEventListener('click', function() {
-            const current = document.documentElement.getAttribute('data-theme');
-            const next = current === 'light' ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
+        (function() {
+            var theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+            
+            function updateThemeButton() {
+                var current = document.documentElement.getAttribute('data-theme');
+                var btn = document.getElementById('theme-toggle');
+                if (btn) {
+                    btn.textContent = current === 'light' ? '🌙' : '☀️';
+                }
+            }
+            
             updateThemeButton();
-        });
 
-        function updateThemeButton() {
-            const current = document.documentElement.getAttribute('data-theme');
-            const btn = document.getElementById('theme-toggle');
-            btn.textContent = current === 'light' ? '🌙' : '☀️';
-        }
+            document.addEventListener('DOMContentLoaded', function() {
+                var btn = document.getElementById('theme-toggle');
+                if (btn) {
+                    btn.addEventListener('click', function() {
+                        var current = document.documentElement.getAttribute('data-theme');
+                        var next = current === 'light' ? 'dark' : 'light';
+                        document.documentElement.setAttribute('data-theme', next);
+                        localStorage.setItem('theme', next);
+                        btn.textContent = next === 'light' ? '🌙' : '☀️';
+                    });
+                }
+            });
+        })();
     </script>
 </body>
 </html>

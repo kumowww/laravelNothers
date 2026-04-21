@@ -8,7 +8,9 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $locale = $request->route('locale', 'en');
+        $locale = $request->route('locale') ?? 'en';
+        app()->setLocale($locale);
+        
         return view('products.index', ['locale' => $locale]);
     }
 }
