@@ -14,14 +14,14 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #fff;
-            color: #333;
+            background: #ffffff;
+            color: #222222;
             transition: background 0.3s, color 0.3s;
         }
 
         body[data-theme="dark"] {
-            background: #1a1a1a;
-            color: #f0f0f0;
+            background: #1a1a1a !important;
+            color: #eeeeee !important;
         }
 
         header {
@@ -35,8 +35,8 @@
         }
 
         body[data-theme="dark"] header {
-            background: rgba(30, 30, 30, 0.95);
-            border-bottom-color: #333;
+            background: rgba(30, 30, 30, 0.95) !important;
+            border-bottom-color: #444444 !important;
         }
 
         .header-content {
@@ -55,7 +55,7 @@
 
         nav a {
             text-decoration: none;
-            color: #333;
+            color: #222222;
             font-weight: 500;
             transition: color 0.3s, border-color 0.3s;
             padding: 5px 0;
@@ -63,17 +63,17 @@
         }
 
         body[data-theme="dark"] nav a {
-            color: #f0f0f0;
+            color: #dddddd !important;
         }
 
         nav a:hover {
-            color: #000;
-            border-bottom-color: #000;
+            color: #000000;
+            border-bottom-color: #000000;
         }
 
         body[data-theme="dark"] nav a:hover {
-            color: #fff;
-            border-bottom-color: #fff;
+            color: #ffffff !important;
+            border-bottom-color: #ffffff !important;
         }
 
         .top-right-controls {
@@ -85,14 +85,14 @@
         .locale-switcher {
             display: flex;
             gap: 8px;
-            background: #f5f5f5;
+            background: #f0f0f0;
             border-radius: 6px;
             padding: 4px 8px;
             transition: background 0.3s;
         }
 
         body[data-theme="dark"] .locale-switcher {
-            background: #333;
+            background: #333333 !important;
         }
 
         .locale-switcher a {
@@ -100,24 +100,24 @@
             font-size: 13px;
             font-weight: 600;
             text-decoration: none;
-            color: #666;
+            color: #555555;
             border-radius: 4px;
             transition: all 0.3s;
             cursor: pointer;
         }
 
         body[data-theme="dark"] .locale-switcher a {
-            color: #aaa;
+            color: #bbbbbb !important;
         }
 
         .locale-switcher a.active {
-            background: #000;
-            color: #fff;
+            background: #000000;
+            color: #ffffff;
         }
 
         body[data-theme="dark"] .locale-switcher a.active {
-            background: #fff;
-            color: #000;
+            background: #ffffff !important;
+            color: #000000 !important;
         }
 
         .locale-switcher a:hover:not(.active) {
@@ -125,7 +125,7 @@
         }
 
         body[data-theme="dark"] .locale-switcher a:hover:not(.active) {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15) !important;
         }
 
         .theme-toggle-switch {
@@ -148,7 +148,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #ccc;
+            background-color: #cccccc;
             border-radius: 30px;
             transition: 0.3s;
             display: flex;
@@ -162,6 +162,7 @@
             line-height: 1;
             transition: opacity 0.2s;
             pointer-events: none;
+            user-select: none;
         }
 
         .slider .sun {
@@ -173,15 +174,15 @@
         }
 
         body[data-theme="dark"] .slider {
-            background-color: #555;
+            background-color: #555555 !important;
         }
 
         body[data-theme="dark"] .slider .sun {
-            opacity: 1;
+            opacity: 1 !important;
         }
 
         body[data-theme="dark"] .slider .moon {
-            opacity: 0;
+            opacity: 0 !important;
         }
 
         .slider:before {
@@ -191,7 +192,7 @@
             width: 24px;
             left: 3px;
             bottom: 3px;
-            background-color: white;
+            background-color: #ffffff;
             border-radius: 50%;
             transition: transform 0.3s;
             box-shadow: 0 1px 4px rgba(0,0,0,0.2);
@@ -237,8 +238,8 @@
             display: inline-block;
             padding: 10px 20px;
             width: 180px;
-            background: #000;
-            color: #fff;
+            background: #000000;
+            color: #ffffff;
             text-decoration: none;
             border-radius: 6px;
             border: none;
@@ -250,64 +251,64 @@
         }
 
         .btn:hover {
-            background: #333;
+            background: #333333;
         }
 
         .btn-secondary {
-            background: #666 !important;
+            background: #666666 !important;
         }
 
         .btn-secondary:hover {
-            background: #555 !important;
+            background: #555555 !important;
         }
 
         body[data-theme="dark"] .btn {
-            background: #fff;
-            color: #000;
+            background: #ffffff !important;
+            color: #000000 !important;
         }
 
         body[data-theme="dark"] .btn:hover {
-            background: #ddd;
+            background: #dddddd !important;
         }
 
         body[data-theme="dark"] .btn-secondary {
-            background: #555 !important;
-            color: #fff;
+            background: #555555 !important;
+            color: #ffffff !important;
         }
 
         body[data-theme="dark"] .btn-secondary:hover {
-            background: #444 !important;
+            background: #444444 !important;
         }
 
         h1 {
             margin-bottom: 20px;
             font-size: 32px;
-            color: #333;
+            color: #222222;
             transition: color 0.3s;
         }
 
         body[data-theme="dark"] h1 {
-            color: #f0f0f0;
+            color: #eeeeee !important;
         }
 
         h2 {
             margin-bottom: 15px;
             font-size: 24px;
-            color: #333;
+            color: #222222;
             transition: color 0.3s;
         }
 
         body[data-theme="dark"] h2 {
-            color: #f0f0f0;
+            color: #eeeeee !important;
         }
 
         p {
-            color: #666;
+            color: #555555;
             transition: color 0.3s;
         }
 
         body[data-theme="dark"] p {
-            color: #aaa;
+            color: #bbbbbb !important;
         }
 
         main {
@@ -317,34 +318,34 @@
         footer {
             text-align: center;
             padding: 20px;
-            color: #999;
+            color: #888888;
             border-top: 1px solid #e0e0e0;
             margin-top: 60px;
             transition: color 0.3s, border-color 0.3s;
         }
 
         body[data-theme="dark"] footer {
-            border-top-color: #333;
-            color: #aaa;
+            border-top-color: #444444 !important;
+            color: #aaaaaa !important;
         }
 
         .creator-link {
-            color: #000;
+            color: #000000;
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .creator-link:hover {
-            color: #333;
+            color: #333333;
             text-decoration: underline;
         }
 
         body[data-theme="dark"] .creator-link {
-            color: #fff;
+            color: #ffffff !important;
         }
 
         body[data-theme="dark"] .creator-link:hover {
-            color: #ccc;
+            color: #cccccc !important;
         }
     </style>
 </head>
@@ -407,17 +408,24 @@
     <script type="module" src="{{ asset('build/assets/app.js') }}" defer></script>
     <script>
         (function() {
-            document.addEventListener('DOMContentLoaded', function() {
-                var theme = localStorage.getItem('theme') || 'light';
+            function applyTheme(theme) {
                 document.documentElement.setAttribute('data-theme', theme);
-                
+                localStorage.setItem('theme', theme);
                 var checkbox = document.getElementById('theme-toggle-input');
                 if (checkbox) {
                     checkbox.checked = (theme === 'dark');
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var savedTheme = localStorage.getItem('theme') || 'light';
+                applyTheme(savedTheme);
+
+                var checkbox = document.getElementById('theme-toggle-input');
+                if (checkbox) {
                     checkbox.addEventListener('change', function(e) {
-                        var next = e.target.checked ? 'dark' : 'light';
-                        document.documentElement.setAttribute('data-theme', next);
-                        localStorage.setItem('theme', next);
+                        var newTheme = e.target.checked ? 'dark' : 'light';
+                        applyTheme(newTheme);
                     });
                 }
             });
