@@ -62,8 +62,13 @@
         }
 
         nav a:hover {
-            color: #007bff;
-            border-bottom-color: #007bff;
+            color: #000;
+            border-bottom-color: #000;
+        }
+
+        body[data-theme="dark"] nav a:hover {
+            color: #fff;
+            border-bottom-color: #fff;
         }
 
         .top-right-controls {
@@ -100,12 +105,21 @@
         }
 
         .locale-switcher a.active {
-            background: #007bff;
-            color: white;
+            background: #000;
+            color: #fff;
+        }
+
+        body[data-theme="dark"] .locale-switcher a.active {
+            background: #fff;
+            color: #000;
         }
 
         .locale-switcher a:hover:not(.active) {
-            background: rgba(0, 123, 255, 0.1);
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        body[data-theme="dark"] .locale-switcher a:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .theme-toggle-switch {
@@ -205,11 +219,20 @@
             color: #721c24;
         }
 
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
         .btn {
             display: inline-block;
             padding: 10px 20px;
-            background: #007bff;
-            color: white;
+            width: 180px;
+            background: #000;
+            color: #fff;
             text-decoration: none;
             border-radius: 6px;
             border: none;
@@ -217,19 +240,37 @@
             font-weight: 500;
             transition: background 0.3s;
             text-align: center;
-            min-width: 150px;
+            box-sizing: border-box;
         }
 
         .btn:hover {
-            background: #0056b3;
+            background: #333;
         }
 
         .btn-secondary {
-            background: #6c757d;
+            background: #666 !important;
         }
 
         .btn-secondary:hover {
-            background: #545b62;
+            background: #555 !important;
+        }
+
+        body[data-theme="dark"] .btn {
+            background: #fff;
+            color: #000;
+        }
+
+        body[data-theme="dark"] .btn:hover {
+            background: #ddd;
+        }
+
+        body[data-theme="dark"] .btn-secondary {
+            background: #555 !important;
+            color: #fff;
+        }
+
+        body[data-theme="dark"] .btn-secondary:hover {
+            background: #444 !important;
         }
 
         h1 {
@@ -259,22 +300,22 @@
         }
 
         .creator-link {
-            color: #007bff;
+            color: #000;
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .creator-link:hover {
-            color: #0056b3;
+            color: #333;
             text-decoration: underline;
         }
 
         body[data-theme="dark"] .creator-link {
-            color: #66b0ff;
+            color: #fff;
         }
 
         body[data-theme="dark"] .creator-link:hover {
-            color: #99ccff;
+            color: #ccc;
         }
     </style>
 </head>
