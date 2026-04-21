@@ -16,7 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->handler(function ($request, $exception) {
+            return response()->json(['error' => $exception->getMessage()], 500);
+        });
     })
     ->create()
     ->useStoragePath('/tmp/storage');
