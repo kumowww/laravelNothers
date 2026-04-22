@@ -7,6 +7,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+Route::redirect('/', '/en');
+
 Route::prefix('{locale}')->where(['locale' => 'en|ru|de'])->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('home');
     Route::post('/diagnostics', [IndexController::class, 'diagnostics'])->name('system.diagnostics');
