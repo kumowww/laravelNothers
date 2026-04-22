@@ -3,8 +3,9 @@
 @section('title', __('messages.home'))
 
 @section('content')
-<div style="text-align: center; padding: 40px 0;">
+<div class="container">
     <h1>@lang('messages.welcome')</h1>
+    
     <p style="font-size: 18px; margin: 20px 0;">
         @lang('messages.current_language'): <strong>{{ strtoupper($locale) }}</strong>
     </p>
@@ -20,7 +21,6 @@
             <button type="submit" class="btn btn-secondary">@lang('messages.clear_cache')</button>
         </form>
     </div>
-
     <div class="btn-group">
         <a href="{{ route('posts.index', ['locale' => $locale]) }}" class="btn">@lang('messages.posts')</a>
         <a href="{{ route('products.index', ['locale' => $locale]) }}" class="btn">@lang('messages.products')</a>
