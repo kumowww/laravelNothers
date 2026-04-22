@@ -365,7 +365,7 @@
                 <a href="{{ route('posts.index', ['locale' => $locale]) }}">@lang('messages.posts')</a>
                 <a href="{{ route('products.index', ['locale' => $locale]) }}">@lang('messages.products')</a>
                 @auth
-                    <a href="{{ url('/dashboard') }}">Dashboard</a>
+                    <a href="{{ route('profile.edit', ['locale' => $locale]) }}">Dashboard</a>
                 @endauth
             </nav>
             
@@ -383,8 +383,8 @@
                     </span>
                 </label>
                 @guest
-                    <a href="{{ route('login') }}" class="btn" style="width: auto; padding: 6px 16px;">@lang('messages.login')</a>
-                    <a href="{{ route('register') }}" class="btn btn-secondary" style="width: auto; padding: 6px 16px;">@lang('messages.register')</a>
+                    <a href="{{ route('login', ['locale' => $locale]) }}" class="btn" style="width: auto; padding: 6px 16px;">@lang('messages.login')</a>
+                    <a href="{{ route('register', ['locale' => $locale]) }}" class="btn btn-secondary" style="width: auto; padding: 6px 16px;">@lang('messages.register')</a>
                 @endguest
             </div>
         </div>

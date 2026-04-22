@@ -22,4 +22,8 @@ return [
     'register' => 'Registrieren',
     'register_coming_soon' => 'Registrierung kommt bald',
     'register_coming_soon_description' => 'Die Registrierungsfunktion wird derzeit vorbereitet und wird in Kürze verfügbar sein.',
+    'login_coming_soon' => 'Anmeldefunktion',
+    'login_coming_soon_description' => 'Die Anmeldefunktion wird derzeit vorbereitet und wird in Kürze verfügbar sein.',
+    'login_success' => 'Anmeldung erfolgreich (Platzhalter).',
+    'logout_success' => 'Abmeldung erfolgreich (Platzhalter).',
 ];
