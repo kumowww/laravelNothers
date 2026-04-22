@@ -14,6 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'locale.validation' => \App\Http\Middleware\LocaleValidation::class,
         ]);
+        $middleware->web(append: [
+            \App\Http\Middleware\LocaleValidation::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions->render(function (Throwable $e, $request) {
