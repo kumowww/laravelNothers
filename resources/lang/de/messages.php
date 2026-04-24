@@ -7,7 +7,7 @@ return [
     'login' => 'Anmelden',
     'password' => 'Passwort',
     'remember_me' => 'Angemeldet bleiben',
-    'welcome' => 'Willkommen im Blog.',
+    'welcome' => 'Willkommen im Blog',
     'current_language' => 'Aktuelle Sprache',
     'diagnostics' => 'Diagnostik',
     'clear_cache' => 'Cache leeren',

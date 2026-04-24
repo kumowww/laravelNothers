@@ -11,6 +11,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        $middleware->trustProxies(at: '*');
+        $middleware->detectLocale();
         $middleware->alias([
             'locale.validation' => \App\Http\Middleware\LocaleValidation::class,
         ]);
